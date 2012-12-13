@@ -1,6 +1,7 @@
 express = require 'express',
 passport = require 'passport',
 util = require 'util',
+partials = require 'express-partials',
 GitHubStrategy = require('passport-github').Strategy
 
 GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID
@@ -27,8 +28,10 @@ passport.use new GitHubStrategy {
 
 @app = express();
 @app.configure =>
+  @app.engine 'haml', require('haml-coffee').__express
   @app.set 'views', __dirname + '/views'
-  @app.set 'view engine', 'ejs'
+  @app.set 'view engine', 'haml'
+  @app.use partials()
   @app.use express.logger()
   @app.use express.cookieParser()
   @app.use express.bodyParser()
@@ -39,24 +42,24 @@ passport.use new GitHubStrategy {
   @app.use @app.router
   @app.use express.static(__dirname + '/public')
 
-
 @app.get '/', (req, res) ->
-  res.render 'layout', { user: req.user, body: 'example stuff' }
+  if req.user?
+    res.render 'index', { user: req.user } 
+  else
+    res.redirect '/login'
 
 @app.get '/account', ensureAuthenticated, (req, res) ->
   res.render 'account', { user: req.user }
 
-@app.get '/login', (req, res) ->
-  res.render 'login', { user: req.user }
-
-@app.get '/auth/github',
-  passport.authenticate('github'),
-  (req, res) ->
+@app.get '/auth/github', passport.authenticate('github')
 
 @app.get '/auth/github/callback', 
   passport.authenticate('github', { failureRedirect: '/login' }),
   (req, res) ->
     res.redirect '/'
+
+@app.get '/login', (req, res) ->
+  res.render 'login'
 
 @app.get '/logout', (req, res) ->
   req.logout()

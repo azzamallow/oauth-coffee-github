@@ -4,7 +4,8 @@
   "dependencies": {
     "coffee-script":    "1.4.0",
     "express":          "3.0.4",
-    "ejs":              "0.8.3",
+    "express-partials": "0.0.6",
+    "haml-coffee":      "1.8.2",
     "passport":         "0.1.15",
     "passport-github":  "0.1.3"
   }
