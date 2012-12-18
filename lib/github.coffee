@@ -4,9 +4,9 @@ github = new GitHub version: '3.0.0'
 OAuth2 = require('oauth').OAuth2
 oauth2 = new OAuth2 process.env.GITHUB_CLIENT_ID, 
                     process.env.GITHUB_CLIENT_SECRET,
-                    '', 
-                    'https://github.com/login/oauth/authorize', 
-                    'https://github.com/login/oauth/access_token'
+                    'https://github.com/login', 
+                    '/oauth/authorize', 
+                    '/oauth/access_token'
 
 exports.authorize = (req, res) ->
   res.redirect oauth2.getAuthorizeUrl()
