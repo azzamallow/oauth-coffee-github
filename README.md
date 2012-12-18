@@ -1,4 +1,4 @@
-# github ouath
+# github oauth
 
 Simple express app which will authenticate with github via oauth and list the repositories for the user.
 
