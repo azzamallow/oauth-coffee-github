@@ -1,7 +1,7 @@
 module.exports = (initializer) ->
   express = require 'express',
   partials = require 'express-partials'
-  app = express();
+  app = express()
 
   app.configure ->
     app.engine 'haml', require('haml-coffee').__express
@@ -12,7 +12,7 @@ module.exports = (initializer) ->
     app.use express.cookieParser()
     app.use express.bodyParser()
     app.use express.methodOverride()
-    app.use express.session({ secret: 'keyboard cat' })
+    app.use express.session(secret: 'keyboard cat')
     app.use app.router
 
   initializer app
