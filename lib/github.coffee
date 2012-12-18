@@ -22,8 +22,8 @@ exports.access = (options) ->
     
       github.authenticate type: 'oauth', token: accessToken
 
-      github.user.get {}, (error, result) ->
-        req.session.username = result.name
+      github.user.get {}, (error, user) ->
+        req.session.username = user.name
         next()
 
 exports.repositories = (callback) ->
