@@ -9,7 +9,7 @@ npm install -g supervisor coffee-script
 npm install
 ```
 
-You will need to create a .env file with your github credentials.
+You will need to create a .env file with github client details. You will need to generate an app to get these details. visti https://github.com/settings/applications and register a new application.
 ```
 vim .env
 ```
