@@ -23,6 +23,13 @@ source .env
 ```
 
 Now the app can be started
+
+Dev mode
 ```
 supervisor app.coffee
+```
+
+Prod mode
+```
+coffee app.coffee
 ```
