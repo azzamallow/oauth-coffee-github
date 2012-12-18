@@ -1,8 +1,8 @@
-# Web Auth
+# github ouath
 
-Authorise with Github. Express/Coffee style.
+Simple express app which will authenticate with github via oauth and list the repositories for the user.
 
-## Getting Started
+## getting started
 
 ```
 npm install -g supervisor coffee-script
